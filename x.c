@@ -56,6 +56,7 @@ static void clippaste(const Arg *);
 static void numlock(const Arg *);
 static void selpaste(const Arg *);
 static void zoom(const Arg *);
+static void zoomclamp(const Arg *);
 static void zoomabs(const Arg *);
 static void zoomreset(const Arg *);
 static void ttysend(const Arg *);
@@ -306,6 +307,18 @@ zoom(const Arg *arg)
 	Arg larg;
 
 	larg.f = usedfontsize + arg->f;
+	zoomabs(&larg);
+}
+
+void
+zoomclamp(const Arg *arg)
+{
+	Arg larg;
+
+	larg.f = usedfontsize + arg->f;
+	larg.f = larg.f < minfontsize ? minfontsize : larg.f;
+	larg.f = larg.f > maxfontsize ? maxfontsize : larg.f;
+
 	zoomabs(&larg);
 }
 
