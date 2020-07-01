@@ -170,6 +170,9 @@ static unsigned int defaultattr = 11;
  */
 static uint forcemousemod = ShiftMask;
 
+/* keyboard modkey. */
+#define MODKEY Mod1Mask
+
 /*
  * Internal mouse shortcuts.
  * Beware that overloading Button1 will disable the selection.
@@ -177,23 +180,21 @@ static uint forcemousemod = ShiftMask;
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
 	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
-	{ ShiftMask,            Button4, kscrollup,      {.i = 1} },
-	{ ShiftMask,            Button5, kscrolldown,    {.i = 1} },
+	{ MODKEY,               Button4, kscrollup,      {.i = 1} },
+	{ MODKEY,               Button5, kscrolldown,    {.i = 1} },
 	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
 	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
+	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
+	{ ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~"} },
 };
 
 /* Internal keyboard shortcuts. */
-#define MODKEY Mod1Mask
-#define TERMMOD (ControlMask|ShiftMask)
-
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
 	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
 	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
 	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
 	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 
 	{ MODKEY,               XK_p,           clippaste,      {.i =  0} },
 	{ MODKEY|ShiftMask,     XK_P,           selpaste,       {.i =  0} },
@@ -202,10 +203,8 @@ static Shortcut shortcuts[] = {
 	{ MODKEY|ShiftMask,     XK_H,           zoomclamp,      {.f = -1} },
 	{ MODKEY|ShiftMask,     XK_M,           zoomreset,      {.f =  0} },
 
-	{ MODKEY,               XK_k,           kscrollup,      {.i = 1} },
-	{ MODKEY,               XK_j,           kscrolldown,    {.i = 1} },
-	{ MODKEY|ShiftMask,     XK_K,           kscrollup,      {.i = 10} },
-	{ MODKEY|ShiftMask,     XK_J,           kscrolldown,    {.i = 10} },
+	{ MODKEY|ShiftMask,     XK_K,           kscrollup,      {.i = 1} },
+	{ MODKEY|ShiftMask,     XK_J,           kscrolldown,    {.i = 1} },
 	{ MODKEY,               XK_u,           kscrollup,      {.i = -1} },
 	{ MODKEY,               XK_d,           kscrolldown,    {.i = -1} },
 };
