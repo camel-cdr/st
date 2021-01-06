@@ -9,8 +9,6 @@
 
 ## Install
 ```sh
-git clone https://gitlab.com/CamelCoder/st
-cd st
 sudo make clean install
 ```
 

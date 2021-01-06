@@ -5,8 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "monospace:pixelsize=12:antialias=true:autohint=true";
-static int borderpx = 2;
+static char *font = "monospace:size=12:antialias=true:autohint=true";
+static int borderpx = 4;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -96,26 +96,27 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.7;
+float alpha = 0.75;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-	"#1d2021",
-	"#cc241d",
-	"#98971a",
-	"#d79921",
+	"#0A0B0C",
+	"#CC241D",
+	"#98971A",
+	"#D79921",
 	"#458588",
-	"#b16286",
-	"#689d6a",
-	"#a89984",
-	"#928374",
-	"#fb4934",
-	"#b8bb26",
-	"#fabd2f",
-	"#83a598",
-	"#d3869b",
-	"#8ec07c",
-	"#ebdbb2",
+	"#B16286",
+	"#689D6A",
+	"#A89984",
+
+	"#7C6F64",
+	"#9D0006",
+	"#70740E",
+	"#B57614",
+	"#076678",
+	"#8F3F71",
+	"#A27B58",
+	"#FBF1C7",
 
 	[255] = 0,
 
@@ -191,11 +192,6 @@ static MouseShortcut mshortcuts[] = {
 /* Internal keyboard shortcuts. */
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
-	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
-	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
-	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
-	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-
 	{ MODKEY,               XK_p,           clippaste,      {.i =  0} },
 	{ MODKEY|ShiftMask,     XK_P,           selpaste,       {.i =  0} },
 	{ MODKEY|ShiftMask,     XK_Y,           clipcopy,       {.i =  0} },
@@ -207,6 +203,11 @@ static Shortcut shortcuts[] = {
 	{ MODKEY|ShiftMask,     XK_J,           kscrolldown,    {.i = 1} },
 	{ MODKEY,               XK_u,           kscrollup,      {.i = -1} },
 	{ MODKEY,               XK_d,           kscrolldown,    {.i = -1} },
+
+	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
+	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
+	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
+	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
 };
 
 /*
